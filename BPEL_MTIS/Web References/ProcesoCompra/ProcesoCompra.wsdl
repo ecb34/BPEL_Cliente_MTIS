@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl1="http://www.mtis.org/proveedor1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl2="http://www.mtis.org/proveedor2/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://compra.bpel.mtis" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://compra.bpel.mtis" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <schema xmlns:wsdl="http://www.mtis.org/gestionAlmacen/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://compra.bpel.mtis" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="ProcesoCompraRequest">
+        <complexType>
+          <sequence>
+            <element name="unidades" type="int" />
+            <element name="referenciaProducto" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ProcesoCompraResponse">
+        <complexType>
+          <sequence>
+            <element name="result" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+    <xsd:schema xmlns:tns="http://www.mtis.org/gestionAlmacen/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.mtis.org/gestionAlmacen/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="ComprobarStock">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="unidades" type="xsd:int" />
+            <xsd:element name="referenciaProducto" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ComprobarStockResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="existe" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ActualizarStock">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="unidades" type="xsd:int" />
+            <xsd:element name="referenciaProducto" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ActualizarStockResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="actualizado" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://www.mtis.org/proveedor2/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.mtis.org/proveedor2/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="SolicitarPresupuesto">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="unidades" type="xsd:int" />
+            <xsd:element name="referenciaProducto" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SolicitarPresupuestoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="precio" type="xsd:float" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OrdenarCompra">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="unidades" type="xsd:int" />
+            <xsd:element name="referenciaProducto" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OrdenarCompraResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="realizadaCorrectamente" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns:tns="http://www.mtis.org/proveedor1/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.mtis.org/proveedor1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="SolicitarPresupuesto">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="unidades" type="xsd:int" />
+            <xsd:element name="referenciaProducto" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SolicitarPresupuestoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="precio" type="xsd:float" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OrdenarCompra">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="unidades" type="xsd:int" />
+            <xsd:element name="referenciaProducto" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OrdenarCompraResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="realizadaCorrectamente" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ProcesoCompraRequestMessage">
+    <wsdl:part name="payload" element="tns:ProcesoCompraRequest" />
+  </wsdl:message>
+  <wsdl:message name="ProcesoCompraResponseMessage">
+    <wsdl:part name="payload" element="tns:ProcesoCompraResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ProcesoCompraPortType">
+    <wsdl:operation name="process">
+      <wsdl:input wsaw:Action="http://compra.bpel.mtis/process" message="tns:ProcesoCompraRequestMessage" />
+      <wsdl:output wsaw:Action="http://compra.bpel.mtis/ProcesoCompra/processResponse" message="tns:ProcesoCompraResponseMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProcesoCompraBinding" type="tns:ProcesoCompraPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="process">
+      <soap:operation soapAction="http://compra.bpel.mtis/process" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProcesoCompra">
+    <wsdl:port name="ProcesoCompraPort" binding="tns:ProcesoCompraBinding">
+      <soap:address location="http://localhost:8080//ProcesoCompra.ProcesoCompraPort/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
